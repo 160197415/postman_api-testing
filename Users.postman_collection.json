@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "a08b43e2-ca27-49c2-b998-f237d43a2527",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24292562"
+	},
+	"item": [
+		{
+			"name": "Fetch List of Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Request is successful with a status code of 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking to see that it returns an array\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an(\"array\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://my-adonis-api-app.herokuapp.com/user/get",
+					"protocol": "https",
+					"host": [
+						"my-adonis-api-app",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let random = +new Date();\r",
+							"\r",
+							"pm.globals.set(\"username\", '${random}-user');\r",
+							"pm.globals.set(\"email\", '${random}-user@test.com');"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"The User creation was successful\", function () {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Confirm response message\", function () {\r",
+							"  var jsonData = pm.response.json();\r",
+							"  pm.expect(jsonData.message).to.eql(\"User Successfully created\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "abc123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://my-adonis-api-app.herokuapp.com/user/create",
+					"protocol": "https",
+					"host": [
+						"my-adonis-api-app",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
