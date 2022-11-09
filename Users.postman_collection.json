@@ -85,17 +85,17 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "{{username}}",
+							"value": "newguy123",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "{{email}}",
+							"value": "newguy123",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "abc123",
+							"value": "newguy123",
 							"type": "text"
 						}
 					]
