@@ -52,10 +52,10 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"let random = +new Date();\r",
+							"let random =+ new Date();\r",
 							"\r",
-							"pm.globals.set(\"username\", '${random}-user');\r",
-							"pm.globals.set(\"email\", '${random}-user@test.com');"
+							"pm.globals.set(\"username\", `${random}-user`);\r",
+							"pm.globals.set(\"email\", `${random}-user@test.com`);"
 						],
 						"type": "text/javascript"
 					}
@@ -85,17 +85,17 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "newguy123",
+							"value": "{{username}}",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "newguy123",
+							"value": "{{email}}",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "newguy123",
+							"value": "123455",
 							"type": "text"
 						}
 					]
